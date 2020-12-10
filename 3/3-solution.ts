@@ -1,17 +1,40 @@
-import { data } from '../3/3-data'
 
-type tree<T> = {
-    '#': false
+import { data } from '../3/3-data'  
+let hillsideData = data
+let right = [1, 3, 5, 7, 1]
+let down = [1, 1, 1, 1, 2]
+
+let probabilityCalc = (arr1: number[]) => {
+    let x = arr1[0]
+    for (let i = 1; i < arr1.length; i++) {
+        x = x * arr1[i]
+    }
+    return x
 }
-type path<t> = {
-    '.': true
+
+const sledgeRoute = (hillsideMap: string[]) => {
+    const lengthOfTheRow = hillsideMap[0].length
+    let treeCollisionProbability:number[] = []
+
+    for (let n = 0; n < right.length; n++) {
+        let rightIncrement = right[n]
+        let downIncrement = down[n]
+        let columnNumber = 0
+
+        let numberOfTreesHit = 0
+        for (let rowNumber = downIncrement; rowNumber < hillsideMap.length; rowNumber += downIncrement) {
+            columnNumber += rightIncrement
+            let p = columnNumber % lengthOfTheRow
+            if (hillsideMap[rowNumber].charAt(p) === '#') {
+                numberOfTreesHit += 1
+            }
+        }
+        treeCollisionProbability.push(numberOfTreesHit)
+    }
+    console.log(probabilityCalc(treeCollisionProbability))
 }
 
-// [var[0][0]], [var[0][1]], [var[0][2]], [var[0][3]],
-// [var[1][0]], [var[1][1]], var[1][2] [var[1][3]],
-// [var[2][0]], [var[2][1]], [var[2][2]], [var[2][3]],
+sledgeRoute(hillsideData)
 
-type hillside<T> = tree<string> & path<string>
-const pathFinder = () => {
 
-}
+
