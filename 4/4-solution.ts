@@ -10,7 +10,7 @@ const extractFieldsFromPassport = {
     pid: (passport: string) => /(pid):(\d{9})/g.exec(passport)
 }
 
-const regexMatchList = [
+const requiredPassportFields = [
     'byr',
     'iyr',
     'eyr',
@@ -68,22 +68,22 @@ export const remainingChecks = (passport: string) :boolean => {
 
 const validatePassportData = (passportData: string) => {
     let sortedPassportData: string[] = passportData.split(/\n\n/g)
-    let stageOneValidation = []
-    sortedPassportData.forEach(element => {
-        let validPassPort = true
-        regexMatchList.forEach(field => {
-            if (!element.includes(field)) {
-                validPassPort = false
+    let passportsWithAllFieldsPresent = []
+    sortedPassportData.forEach(passport => {
+        let passportContainsAllRequiredFields = true
+        requiredPassportFields.forEach(requiredField => {
+            if (!passport.includes(requiredField)) {
+                passportContainsAllRequiredFields = false
             }
         })
-        if (validPassPort) {
-            stageOneValidation.push(element)
+        if (passportContainsAllRequiredFields) {
+            passportsWithAllFieldsPresent.push(passport)
         }
     })
 
     let numberOfValidPassports = 0
 
-    stageOneValidation.forEach(passport => {
+    passportsWithAllFieldsPresent.forEach(passport => {
         let validDOB = dateRangeChecks(extractFieldsFromPassport.byr(passport))
         let validIssueYear = dateRangeChecks(extractFieldsFromPassport.iyr(passport))
         let validExpireDate = dateRangeChecks(extractFieldsFromPassport.eyr(passport))
@@ -91,6 +91,13 @@ const validatePassportData = (passportData: string) => {
         let remainingChecksOutcome = remainingChecks(passport)
         if (validDOB && validExpireDate && validIssueYear && heightCheckOutcome && remainingChecksOutcome) {
             numberOfValidPassports += 1
+        } else {
+            console.log(`${passport}\n------------------------------`)
+            console.log(`byr: ${validDOB}`)
+            console.log(`iyr: ${validIssueYear}`)
+            console.log(`eyr: ${validExpireDate}`)
+            console.log(`hgt: ${heightCheckOutcome}`)
+            console.log(`pid, ecl, hcl: ${remainingChecksOutcome}\n------------------------------------\n`)
         }
     });
     console.log(`Number of valid passports: ${numberOfValidPassports}`)
