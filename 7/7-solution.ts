@@ -1,28 +1,32 @@
 import { inputData } from './7-data'
-let testInput = `
-striped white bags contain 3 plaid yellow bags, 3 muted orange bags, 1 shiny gold bag, 5 light white bags.
-drab green bags contain 2 dotted cyan bags, 4 striped white bags, 3 muted magenta bags.`
 
-let directParentOfShiny_regex = /(?<directParentOfShiny>.*)\scontain.*\d shiny gold bags?/
-let directParent = directParentOfShiny_regex.exec(testInput).groups.directParentOfShiny
-
-let child = directParentOfShiny_regex.exec(testInput).groups.directParentOfShiny
-let parent_regex = new RegExp(`(?<grandparentOfShiny>.*) contain.*(`+child+`)`)
-
-function regularExpressionGenerator(child) {
-    return new RegExp(`(?<parent>.*) contain.*(`+child+`)`)
+export function regularExpressionGenerator(name: string) {
+    return new RegExp(`(?<parent>.*) contain.*(`+name+`s?)`, 'g')
+}
+export function findNextOuterBag(bagColour: string, inputData: string) {
+    return regularExpressionGenerator(bagColour).exec(inputData)
+}
+export const decendantFinder = (inputData: string, bagColour: string) => {
+    if (findNextOuterBag(bagColour, inputData) === null) {
+        return bagColour;
+    } else {
+        bagColour = regularExpressionGenerator(bagColour).exec(inputData).groups.parent
+        return decendantFinder(inputData, bagColour)
+    }
 }
 
-//let 
+const singularTreeTestData = 
+`blue bags contain 3 yellow bags, 2 red bads.
+yellow bags contain 4 purple bags, 2 orange bags.
+red bags contain 14 silver bags, 9 shiny gold bags.
+purple bags contain 18 grey bags.
+silver bags contain 4 shiny gold bags.
+orange bags contain 2 shiny gold bags.
+shiny gold bags contain 1 incorrect answer bags.`
 
-//let counter = 0
-
-const decendantFinder = (child) => {
-    let parent = regularExpressionGenerator(child).exec(testInput).groups.parent
-
-}
-const testing = (n, l) => {
-    return n + l
-}
-
-module.exports = testing
+//! May become useful
+// let myArray
+// let rawr = regularExpressionGenerator('shiny gold bag')
+// while ((myArray = rawr.exec(singularTreeTestData)) !== null) {
+//     console.log(myArray)
+// }
