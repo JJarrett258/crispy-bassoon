@@ -1,5 +1,4 @@
-export const inputData = `
-pale chartreuse bags contain 3 faded orange bags.
+export const inputData = `pale chartreuse bags contain 3 faded orange bags.
 drab gold bags contain 5 dark aqua bags.
 mirrored magenta bags contain 3 dotted violet bags.
 posh black bags contain 3 dark lavender bags, 3 mirrored coral bags, 1 dotted chartreuse bag.
@@ -592,5 +591,4 @@ dim green bags contain 2 faded green bags, 2 bright magenta bags.
 dark lavender bags contain 2 muted lime bags, 2 faded tomato bags, 5 wavy purple bags, 3 light olive bags.
 dim purple bags contain 4 dotted plum bags.
 dark salmon bags contain 1 dull violet bag, 3 bright indigo bags.
-dim cyan bags contain 5 dim crimson bags, 2 clear brown bags, 1 muted brown bag, 4 light silver bags.
-`
+dim cyan bags contain 5 dim crimson bags, 2 clear brown bags, 1 muted brown bag, 4 light silver bags.`
