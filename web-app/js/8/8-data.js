@@ -1,5 +1,4 @@
-const bootCode = 
-`acc +14
+export const bootCode = `acc +14
 acc +11
 nop +422
 acc +14
@@ -603,4 +602,4 @@ acc +17
 acc -10
 acc +22
 acc +10
-jmp +1`
+jmp +1`;

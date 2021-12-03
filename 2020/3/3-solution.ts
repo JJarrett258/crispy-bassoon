@@ -1,5 +1,5 @@
 
-import { data } from '../3/3-data'  
+import { data } from './3-data'
 let hillsideData = data
 let right = [1, 3, 5, 7, 1]
 let down = [1, 1, 1, 1, 2]
