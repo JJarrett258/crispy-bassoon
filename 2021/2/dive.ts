@@ -1,32 +1,22 @@
 import {parseTextToStringArr} from "../textParser";
 const navData = parseTextToStringArr('/Users/jonathan.jarrett/side-projects/advent-of-code/2021/2/dive-data.txt')
+const magnitudeRegExp = /(\d+)/
+const directionRegExp = /([a-z]+)/
 
-export const getForwardValues = (navData: string[]): number => {
-    const magnitudeRegExp = /(\d+)/
-    let forwardValues: number[] = []
+export const getVerticalValues = (navData: string[], horizontalPosition: number = 0, verticalPosition: number = 0, aim: number = 0): number => {
     navData.map(value => {
-        if (value.includes('forward')) {
-            forwardValues.push(Number(value.match(magnitudeRegExp)[1]))
+        let direction = value.match(directionRegExp)[1]
+        let magnitude = Number(value.match(magnitudeRegExp)[1])
+        switch(direction) {
+            case 'forward':
+                horizontalPosition += magnitude
+                break
+            default:
+                verticalPosition += direction === 'down' ? magnitude : (-Math.abs(magnitude))
+                break
         }
     })
-    return forwardValues.reduce((previousValue, currentValue) => previousValue + currentValue)
+    return horizontalPosition * verticalPosition
 }
-
-export const getVerticalValues = (navData: string[]): number => {
-    const magnitudeRegExp = /(\d+)/
-    let verticalValues: number[] = []
-    navData.map(value => {
-        if (value.includes('down')) {
-            verticalValues.push(Number(value.match(magnitudeRegExp)[1]))
-        } else if (value.includes('up')) {
-            verticalValues.push(-Math.abs(Number(value.match(magnitudeRegExp)[1])))
-        }
-    })
-    return verticalValues.reduce((previousValue, currentValue) => previousValue + currentValue)
-}
-
-function totalChangeInDirection(navData: string[]): number {
-    return getVerticalValues(navData) * getForwardValues(navData)
-}
-console.log(totalChangeInDirection(navData))
+console.log(getVerticalValues(navData))
 // 1451208
