@@ -1,5 +1,3 @@
-import {parseTextToStringArr} from "../textParser";
-const navData = parseTextToStringArr('2021/2/dive-data.txt')
 /*
 down X increases your aim by X units, up X decreases your aim by X units.
 forward X does two things:

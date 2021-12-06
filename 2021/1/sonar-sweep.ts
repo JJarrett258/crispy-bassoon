@@ -1,6 +1,3 @@
-import {parseTextToNumberArr} from "../textParser";
-
-const depthData = parseTextToNumberArr('/Users/jonathan.jarrett/side-projects/advent-of-code/2021/1/sonar-sweep-data.txt')
 export const getDepthChange = (currentDepth: number, nextDepth: number): number => {
     return nextDepth > currentDepth ? 1 : 0
 }
@@ -23,7 +20,3 @@ export const threeMeasurementDepthAnalysis = (depthChangeData: number[]) => {
     }
     return calculateDepthIncreasesTotal(newData)
 }
-
-
-
-console.log(threeMeasurementDepthAnalysis(depthData))
