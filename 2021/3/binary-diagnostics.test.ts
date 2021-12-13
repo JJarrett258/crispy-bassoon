@@ -1,7 +1,14 @@
-import {getGammaRate, getResult, invert, parseArray} from "./binary-diagnostics";
+import {
+    getCO2Rating,
+    getGammaRate, getO2Rating,
+    getOxygenRating,
+    getResult,
+    invert,
+    parseArray
+} from "./binary-diagnostics";
 
+const diagnosticsData = ['00100','11110','10110','10111','10101','01111','00111','11100','10000','11001','00010','01010']
 describe('binary diagnostics tests', () => {
-    const diagnosticsData = ['00100','11110','10110','10111','10101','01111','00111','11100','10000','11001','00010','01010']
 
     test('calculates gamma rate', () => {
         expect(getGammaRate(diagnosticsData, false)).toEqual([1,0,1,1,0])
@@ -21,4 +28,14 @@ describe('binary diagnostics tests', () => {
         expect(getResult(diagnosticsData)).toEqual(198)
     })
 
+})
+
+describe('part two test', () => {
+    test('filter diagnostics data to locate oxygen rating' ,() => {
+        expect(getO2Rating(diagnosticsData, 0)).toEqual(23)
+    })
+
+    test('filter diagnostics data to locate carbon dioxide scrubber rating' ,() => {
+        expect(getCO2Rating(diagnosticsData, 0)).toEqual(10)
+    })
 })
