@@ -1,5 +1,3 @@
-import {parseTextToStringArr} from "../../textParser";
-
 function getSumOfOnesInBinaryColumns(diagnosticsData: string[]): number[] {
     let totalOnesInEachColumns: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     diagnosticsData.forEach(entry => {
@@ -41,21 +39,6 @@ export const getResult = (diagnosticData: string[]): number => {
     return parseArray(gammaRate) * parseArray(epsilonRate)
 }
 
-
-// todo: currently recalculates the entire most frequent bit after each shuffle.
-// todo: instead, only calculate the most frequent bit per column (i.e. each column in isolation of its neighbours)
-
-export const getOxygenRating = (diagnosticData: string[]): number => {
-    for (let i = 0; i < diagnosticData.length; i++) {
-        let mostFrequentBit = getGammaRate(diagnosticData)
-        diagnosticData = diagnosticData.filter(entry => entry.charAt(i) === mostFrequentBit[i].toString())
-    }
-    return parseArray(diagnosticData[0].split('').map(digit => parseInt(digit)))
-}
-
-// get most frequent nth bit from list of bytes
-let diagnosticsData = parseTextToStringArr('/Users/jonathanjarrett/workspace/crispy-bassoon/2021/3/diagnostics-data.txt')
-
 function getMostFrequentNthBit(column: number, inputData: string[]): number {
     let ones: number = 0
     for (const bit of inputData) {
@@ -72,7 +55,7 @@ function getLeastFrequentNthBit(column: number, inputData: string[]): number {
     return ones <= Math.round(inputData.length/2) ? 1 : 0
 }
 
-export const getO2Rating = (inputData: string[], column: number) => {
+export const getO2Rating = (inputData: string[], column: number): number => {
     let x = inputData
     if (x.length === 1) {
         return parseArray(x[0].split(''))
@@ -101,8 +84,3 @@ export const getCO2Rating = (inputData: string[], column: number) => {
     x = x.filter(byte => byte.charAt(column) === minorityBit.toString())
     return getCO2Rating(x, column += 1)
 }
-
-let O2 = getO2Rating(diagnosticsData, 0)
-let CO2 = getCO2Rating(diagnosticsData, 0)
-console.log(O2 * CO2)
-
