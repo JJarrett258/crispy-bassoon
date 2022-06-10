@@ -32,11 +32,11 @@ describe('binary diagnostics tests', () => {
 
 describe('part two test', () => {
     const realData = parseTextToStringArr('/Users/jonathan.jarrett/side-projects/advent-of-code/2021/3/diagnostics-data.txt')
-    xtest('filter diagnostics data to locate oxygen rating' ,() => {
+    test('filter diagnostics data to locate oxygen rating' ,() => {
         expect(getO2Rating(diagnosticsData, 0)).toEqual(23)
     })
 
-    xtest('filter diagnostics data to locate carbon dioxide scrubber rating' ,() => {
+    test('filter diagnostics data to locate carbon dioxide scrubber rating' ,() => {
         expect(getCO2Rating(diagnosticsData, 0)).toEqual(10)
     })
 })
