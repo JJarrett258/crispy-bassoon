@@ -6,3 +6,7 @@ export const parseTextToNumberArr = (filepath: string): number[] => {
 export const parseTextToStringArr = (filePath: string): string[] => {
     return fs.readFileSync(filePath, 'utf8').split('\n')
 }
+
+export const parseCoordinates = (filePath: string): string[] => {
+    return fs.readFileSync(filePath, 'utf-8').split('\n')
+}
