@@ -1,4 +1,5 @@
 import * as fs from "fs";
+
 export const parseTextToNumberArr = (filepath: string): number[] => {
     return fs.readFileSync(filepath, 'utf8').split('\n').map(digit => Number(digit))
 }

@@ -1,5 +1,5 @@
 import {calculateDepthIncreasesTotal, getDepthChange, threeMeasurementDepthAnalysis} from "./sonar-sweep";
-import {parseTextToNumberArr} from "../../textParser";
+import {parseTextToNumberArr} from "../../utilities/textParser";
 
 describe('sonar sweep tests', () => {
     test('determine if next depth bigger than current', () => {
