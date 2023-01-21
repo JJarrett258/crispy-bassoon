@@ -22,7 +22,7 @@ describe('sonar sweep tests', () => {
     })
 
     test('calculate result from puzzle input', () => {
-        const puzzleInput = parseTextToNumberArr('2021/1/sonar-sweep-data.txt')
+        const puzzleInput = parseTextToNumberArr('2021/1/sonar-sweep-this-fucking-data.ts')
         expect(threeMeasurementDepthAnalysis(puzzleInput)).toEqual(1683)
     })
 })

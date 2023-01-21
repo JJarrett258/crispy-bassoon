@@ -1,7 +1,7 @@
 const fs = require('fs')
-const filePath = '/Users/jonathan.jarrett/workspace/Side Projects/adventOfCode2020/2/2-data.txt'
+const filePath = '/Users/jonathan.jarrett/workspace/Side Projects/adventOfCode2020/2/2-this-fucking-data.ts'
 
-const rawData: string = fs.readFileSync(filePath, 'utf8', (err, data) => {
+const rawData: string = fs.readFileSync(filePath, 'utf8', (err) => {
     if (err) {
         console.log(err)
         return

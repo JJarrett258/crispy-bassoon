@@ -1,5 +1,4 @@
 import {getCO2Rating, getGammaRate, getO2Rating, getResult, invert, parseArray} from "./binary-diagnostics";
-import {parseTextToStringArr} from "../../utilities/textParser";
 
 const diagnosticsData = ['00100', '11110', '10110', '10111', '10101', '01111', '00111', '11100', '10000', '11001', '00010', '01010']
 describe('binary diagnostics tests', () => {
