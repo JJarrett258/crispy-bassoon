@@ -1,6 +1,9 @@
 import {parseTextFileToString} from "../../utilities/textParser";
 
 const testData = parseTextFileToString('/Users/Jonathan.Jarrett/side-projects/crispy-bassoon/2022/3/items-in-sack.txt').split('\n')
+/*
+Day One
+ */
 
 // slice string into two substrings
 const divideSackIntoCompartments = (sack: string) => {
@@ -34,4 +37,35 @@ function sumCompartmentPriorityValues(sacks: string[]) {
     return runningTotal
 }
 
-console.log(sumCompartmentPriorityValues(testData))
+/*
+Day Two
+*/
+export const findSmallestBagInGroup = (groupBags: string[]) => {
+    groupBags.sort(function(a, b) {
+        return a.length - b.length
+    })
+    let smallestBag = new Set(groupBags[0].split(''))
+    let secondSmallestBag = new Set(groupBags[1].split(''))
+    let largestBag = new Set(groupBags[2].split(''))
+    return [smallestBag, secondSmallestBag, largestBag]
+}
+
+export function findMatchingBagType(bag1: string, bag2: string, bag3: string) {
+    let [smallestBag, secondSmallestBag, largestBag] = findSmallestBagInGroup([bag1, bag2, bag3])
+    let groupBadgeType
+    for (let itemType of smallestBag) {
+        if (secondSmallestBag.has(itemType) && largestBag.has(itemType)) {
+            groupBadgeType = lookupPriorityOfItemType(itemType)
+            break
+        }
+    }
+    return groupBadgeType
+}
+
+const sumValuesOfAllBadgeTypes = (bagsToSort: string[]) => {
+    let count = 0
+    for (let i = 0; i < bagsToSort.length - 1; i += 3) {
+        count += findMatchingBagType(bagsToSort[i], bagsToSort[i + 1], bagsToSort[i + 2])
+    }
+    return count;
+};
