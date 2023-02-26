@@ -69,3 +69,4 @@ const sumValuesOfAllBadgeTypes = (bagsToSort: string[]) => {
     }
     return count;
 };
+console.log("Hey")
