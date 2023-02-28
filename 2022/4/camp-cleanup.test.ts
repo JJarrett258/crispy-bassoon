@@ -1,4 +1,4 @@
-import {assignmentRegex, determineOverlappingAssignments} from "./camp-clean-up";
+import {assignmentRegex, determineNumberOfEnvelopingAssignments} from "./camp-clean-up";
 describe('Day Four - Camp Cleanup Tests', function () {
     const overlappingAssignments: string = '2-8,3-7';
     it('should assign a,b,x,y the values from the section assignments', function () {
@@ -26,6 +26,6 @@ describe('Day Four - Camp Cleanup Tests', function () {
            '9-85,8-85',
            '26-80,26-90'
        ]
-        expect(determineOverlappingAssignments(testSubject)).toBe(10)
+        expect(determineNumberOfEnvelopingAssignments(testSubject)).toBe(10)
     });
 });
